@@ -1,12 +1,13 @@
-import torch
-from DCCRN import dccrn
+from models.DCCRN import dccrn
+
+
+def train(mode='CL'):
+    model = dccrn(mode)
+
+    model.to(device)
+
 
 if __name__ == '__main__':
-    torch.manual_seed(10)
-    torch.autograd.set_detect_anomaly(True)
-    inputs = torch.randn([10, 16000 * 4]).clamp_(-1, 1)
-    labels = torch.randn([10, 16000 * 4]).clamp_(-1, 1)
-
     # DCCRN-E
     # model = dccrn('E')
     # DCCRN-R

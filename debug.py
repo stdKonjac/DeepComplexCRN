@@ -1,5 +1,5 @@
 import torch
-from DCCRN import dccrn
+from models.DCCRN import dccrn
 
 if __name__ == '__main__':
     torch.manual_seed(10)

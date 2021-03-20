@@ -9,6 +9,7 @@
           </mappings>
           <excludedPaths>
             <excludedPath path="/Project/DeepComplexCRN/samples" />
+            <excludedPath path="/Project/DeepComplexCRN/models/pretrained-models" />
           </excludedPaths>
         </serverdata>
       </paths>
