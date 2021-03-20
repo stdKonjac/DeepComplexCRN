@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b839a579-d263-46b6-b1d1-aa192ab0e9b5" name="SIGS-Lab-3">
+        <fileTransfer rootFolder="/data1/zengziyun" accessType="SFTP" host="219.223.189.198" port="22" sshConfigId="85f36814-9c09-4eeb-b564-360b2f11324d" sshConfig="SIGS-Lab-3">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

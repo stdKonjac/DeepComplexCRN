@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="SIGS-Lab-3" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="SIGS-Lab-3">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Project/DeepComplexCRN" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/Project/DeepComplexCRN/samples" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
