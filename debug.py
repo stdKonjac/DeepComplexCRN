@@ -7,6 +7,9 @@ if __name__ == '__main__':
     inputs = torch.randn([10, 16000 * 4]).clamp_(-1, 1)
     labels = torch.randn([10, 16000 * 4]).clamp_(-1, 1)
 
+    print(inputs.shape)
+    exit(0)
+
     # DCCRN-E
     # model = dccrn('E')
     # DCCRN-R

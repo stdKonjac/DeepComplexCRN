@@ -249,22 +249,6 @@ class DCCRN(nn.Module):
         }]
         return params
 
-    def loss(self, inputs, labels, loss_mode='SI-SNR'):
-
-        if loss_mode == 'MSE':
-            b, d, t = inputs.shape
-            labels[:, 0, :] = 0
-            labels[:, d // 2, :] = 0
-            return F.mse_loss(inputs, labels, reduction='mean') * d
-
-        elif loss_mode == 'SI-SNR':
-            # return -torch.mean(si_snr(inputs, labels))
-            return -(si_snr(inputs, labels))
-        elif loss_mode == 'MAE':
-            gth_spec, gth_phase = self.stft(labels)
-            b, d, t = inputs.shape
-            return torch.mean(torch.abs(inputs - gth_spec)) * d
-
 
 def dccrn(mode='CL'):
     if mode == 'E':
@@ -279,41 +263,3 @@ def dccrn(mode='CL'):
     else:
         raise Exception('non-supported mode!')
     return model
-
-
-def remove_dc(data):
-    mean = torch.mean(data, -1, keepdim=True)
-    data = data - mean
-    return data
-
-
-def l2_norm(s1, s2):
-    # norm = torch.sqrt(torch.sum(s1*s2, 1, keepdim=True))
-    # norm = torch.norm(s1*s2, 1, keepdim=True)
-
-    norm = torch.sum(s1 * s2, -1, keepdim=True)
-    return norm
-
-
-def si_snr(s1, s2, eps=1e-8):
-    # s1 = remove_dc(s1)
-    # s2 = remove_dc(s2)
-    s1_s2_norm = l2_norm(s1, s2)
-    s2_s2_norm = l2_norm(s2, s2)
-    s_target = s1_s2_norm / (s2_s2_norm + eps) * s2
-    e_nosie = s1 - s_target
-    target_norm = l2_norm(s_target, s_target)
-    noise_norm = l2_norm(e_nosie, e_nosie)
-    snr = 10 * torch.log10((target_norm) / (noise_norm + eps) + eps)
-    return torch.mean(snr)
-
-
-def test_complex():
-    torch.manual_seed(20)
-    inputs = torch.randn(10, 2, 256, 10)
-    conv = ComplexConv2d(2, 32, (3, 1), (2, 1), (1, 0))
-    tconv = ComplexConvTranspose2d(32, 2, (3, 1), (2, 1), (1, 0), (1, 0))
-    out = conv(inputs)
-    print(out.shape)
-    out = tconv(out)
-    print(out.shape)
